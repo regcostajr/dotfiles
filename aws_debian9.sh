@@ -23,10 +23,11 @@ sudo npm i -g ganache-cli
 sudo npm i -g truffle
 sudo npm i -g solc
 
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && wget -O ~/.vimrc https://raw.githubusercontent.com/regcostajr/dotfiles/master/.vimrc && wget -O ~/.bash_profile https://raw.githubusercontent.com/regcostajr/dotfiles/master/.bash_profile && curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+
 source /etc/profile.d/java.sh
 source /etc/profile.d/go.sh
-
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && wget -O ~/.vimrc https://raw.githubusercontent.com/regcostajr/dotfiles/master/.vimrc && wget -O ~/.bash_profile https://raw.githubusercontent.com/regcostajr/dotfiles/master/.bash_profile && curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+source ~/.bash_profile
 
 sudo mkdir /var/lib/google-auth
 sudo chmod 755 /var/lib/google-auth
@@ -46,5 +47,3 @@ sudo echo 'AuthenticationMethods keyboard-interactive' | sudo tee -a /etc/ssh/ss
 sudo service sshd restart
 
 vim +PluginInstall +qall
-
-exit
