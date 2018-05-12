@@ -31,5 +31,5 @@ Contains configuration for:
 #### Importing configuration
 
 ```
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && wget -O ~/.vimrc https://raw.githubusercontent.com/raunakkathuria/dotfiles/master/.vimrc && wget -O ~/.bash_profile https://raw.githubusercontent.com/raunakkathuria/dotfiles/master/.bash_profile && curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && sudo apt-get install exuberant-ctags
+wget -O- https://raw.githubusercontent.com/regcostajr/dotfiles/master/aws_debian9.sh | sh
 ```
