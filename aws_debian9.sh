@@ -28,8 +28,6 @@ source /etc/profile.d/go.sh
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && wget -O ~/.vimrc https://raw.githubusercontent.com/regcostajr/dotfiles/master/.vimrc && wget -O ~/.bash_profile https://raw.githubusercontent.com/regcostajr/dotfiles/master/.bash_profile && curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 
-vim +PluginInstall +qall
-
 sudo mkdir /var/lib/google-auth
 sudo chmod 755 /var/lib/google-auth
 
@@ -46,5 +44,7 @@ sudo sed -i 's/PubkeyAuthentication yes/PubkeyAuthentication no/g' /etc/ssh/sshd
 sudo echo 'AuthenticationMethods keyboard-interactive' | sudo tee -a /etc/ssh/sshd_config
 
 sudo service sshd restart
+
+vim +PluginInstall +qall
 
 exit
