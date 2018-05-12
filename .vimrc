@@ -8,27 +8,16 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'L9'
-Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
-Plugin 'plasticboy/vim-markdown'
+Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'tomasiser/vim-code-dark'
+Plugin 'Nopik/vim-nerdtree-direnter'
 
 Plugin 'vim-perl/vim-perl'
 Plugin 'tomlion/vim-solidity'
 Plugin 'fatih/vim-go'
-
-map <Leader>t :CtrlPBuffer<CR>
- let g:ctrlp_map = '<C-p>'
- let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
- let g:ctrlp_use_caching = 1
- let g:ctrlp_custom_ignore = {
- \ 'dir':  '\v\c\.(git|svn)$|cgi/t/sandbox|cover_db',
- \ 'file': '\v\c\.(swf|bak|png|gif|js|mov|ico|jpg|pdf|jrxml)$'
-  \ }
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -49,7 +38,7 @@ set incsearch
 set laststatus=2
 set list
 set listchars=tab:>-,trail:-
-set mouse+=a
+set mouse=c
 set nowrap
 set ruler
 set scrolloff=5
@@ -58,11 +47,12 @@ set showcmd
 set showmatch
 set smarttab
 set t_Co=256
-set tags=tags;/
+set tags=tags
 set virtualedit=block
 set wrap
 set colorcolumn=80
 set number
+set viminfo='100,<100,s20,h
 
 syntax on
 
@@ -71,40 +61,22 @@ colo codedark
 " :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-nnoremap <C-L> :noh<CR><C-L>
-inoremap jj <Esc>
-nnoremap <Leader>r :source ~/.vimrc<CR>
-nnoremap <Leader><Leader>r :e ~/.vimrc<CR>
+map <Leader>t :CtrlPBuffer<CR>
+ let g:ctrlp_map = '<C-p>'
+ let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
+ let g:ctrlp_use_caching = 1
+ let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v\c\.(git|svn)$|cgi/t/sandbox|cover_db',
+    \ 'file': '\v\c\.(swf|bak|png|gif|js|mov|ico|jpg|pdf|jrxml)$'
+    \ }
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
 
-map <Leader>gs :Gstatus<CR>
-map <Leader>gc :Gcommit<CR>
-map <Leader>gm :Gcommit --amend<CR>
-map <Leader>gll :Git log<CR>
-map <Leader>glp :Git log -p<CR>
-map <Leader>gb :Gblame<CR>
-map <Leader>gdd :Git diff<CR>
-map <Leader>gdm :Git diff %<CR>
-map <Leader>gdf :Gdiff<CR>
-map <Leader>gg :Git
+let g:NERDTreeMapOpenInTab='<ENTER>'
+let g:NERDTreeQuitOnOpen = 1
 
-map <Leader>] :wa<bar><UP><CR>
+map <C-n> :NERDTreeToggle<CR>
+nmap <C-m> :TagbarToggle<CR>
 
-nmap <F1> <Esc>
-imap <F1> <Esc>
-
-autocmd FileType gitcommit autocmd! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-
-" navigate display line when wrap is set
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up> gk
-vnoremap <Down> gj
-vnoremap <Up> gk
-inoremap <Down> <C-o>gj
-inoremap <Up> <C-o>gk
-
-map <F5> :NERDTreeToggle<CR>
-nmap <F8> :TagbarToggle<CR>
