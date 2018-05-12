@@ -4,41 +4,23 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" plugin for perl syntax, template toolkit
-Plugin 'vim-perl/vim-perl'
-" plugin for javascript syntax
-Plugin 'pangloss/vim-javascript'
-" plugin for json syntax
-Plugin 'elzr/vim-json'
-" plugin to easy find file
 Plugin 'kien/ctrlp.vim'
-" tree explorer
 Plugin 'scrooloose/nerdtree'
-" Status line
 Plugin 'vim-airline/vim-airline'
-" HTML Syntax
-Plugin 'othree/html5.vim'
-" Mojo html.ep
-Plugin 'yko/mojo.vim'
-" Markdown highlighter
 Plugin 'plasticboy/vim-markdown'
-" Code tags
 Plugin 'majutsushi/tagbar'
+Plugin 'tomasiser/vim-code-dark'
+
+Plugin 'vim-perl/vim-perl'
+Plugin 'tomlion/vim-solidity'
+Plugin 'fatih/vim-go'
+
 map <Leader>t :CtrlPBuffer<CR>
  let g:ctrlp_map = '<C-p>'
  let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
@@ -51,17 +33,6 @@ map <Leader>t :CtrlPBuffer<CR>
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 set autoindent
 set backspace=indent,eol,start
@@ -78,7 +49,7 @@ set incsearch
 set laststatus=2
 set list
 set listchars=tab:>-,trail:-
-set mouse=c
+set mouse+=a
 set nowrap
 set ruler
 set scrolloff=5
@@ -86,31 +57,16 @@ set shiftwidth=4
 set showcmd
 set showmatch
 set smarttab
-"set statusline=%F%m%r%h%w\ [%{&ff}]\ %y\ [CHR=%b/0x%B]\ [POS=%04l,%03c(%03v)]\ [%p%%]\ [LEN=%L]\ %{fugitive#statusline()}
 set t_Co=256
 set tags=tags;/
 set virtualedit=block
 set wrap
-"set nu
-"set spell spelllang=en_us
 set colorcolumn=80
+set number
+
 syntax on
 
-colorscheme desert
-
-highlight   CursorColumn  term=NONE    cterm=none ctermbg=232
-highlight   CursorLine    term=NONE    cterm=bold ctermbg=8
-highlight   FoldColumn                            ctermbg=8  ctermfg=14
-highlight   Folded                                ctermbg=8  ctermfg=14
-highlight   Search        term=reverse cterm=bold ctermbg=11 ctermfg=0
-highlight   Visual        term=NONE    cterm=bold ctermbg=10 ctermfg=8
-highlight   ColorColumn                           ctermbg=8
-
-"" makes Omni Completion less pinky :P
-highlight   Pmenu                                 ctermbg=2  ctermfg=0
-highlight   PmenuSel                              ctermbg=7  ctermfg=0
-highlight   PmenuSbar                             ctermbg=0  ctermfg=7
-highlight   PmenuThumb                            ctermbg=7  ctermfg=0
+colo codedark
 
 " :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
