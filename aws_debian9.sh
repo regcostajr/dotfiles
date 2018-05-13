@@ -27,10 +27,6 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim &
 
 vim +PluginInstall +qall
 
-source /etc/profile.d/java.sh
-source /etc/profile.d/go.sh
-source ~/.bash_profile
-
 sudo mkdir /var/lib/google-auth
 sudo chmod 755 /var/lib/google-auth
 
@@ -48,4 +44,3 @@ sudo echo 'AuthenticationMethods keyboard-interactive' | sudo tee -a /etc/ssh/ss
 
 sudo service sshd restart
 
-exit
