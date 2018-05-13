@@ -31,5 +31,5 @@ Contains configuration for:
 #### Importing configuration
 
 ```
-wget https://raw.githubusercontent.com/regcostajr/dotfiles/master/aws_debian9.sh && ./aws_debian9.sh
+wget https://raw.githubusercontent.com/regcostajr/dotfiles/master/aws_debian9.sh && sh ./aws_debian9.sh
 ```
