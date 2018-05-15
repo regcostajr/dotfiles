@@ -15,21 +15,17 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'Nopik/vim-nerdtree-direnter'
 
-Plugin 'vim-perl/vim-perl'
 Plugin 'tomlion/vim-solidity'
-Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 set autoindent
+set copyindent
 set backspace=indent,eol,start
-set cindent " set smartindent
 set cmdheight=2
-set cursorcolumn
 set cursorline
-set errorformat=\"../../%f\"\\,%*[^0-9]%l:\ %m
 set expandtab
 set hidden
 set hlsearch
@@ -39,20 +35,25 @@ set laststatus=2
 set list
 set listchars=tab:>-,trail:-
 set mouse=c
-set nowrap
 set ruler
 set scrolloff=5
+set tabstop=4
 set shiftwidth=4
 set showcmd
 set showmatch
 set smarttab
 set t_Co=256
-set tags=tags
 set virtualedit=block
-set wrap
 set colorcolumn=80
 set number
 set viminfo='100,<100,s20,h
+set history=1000
+set undolevels=1000
+set nobackup
+set noswapfile
+set nowrap
+set noerrorbells
+set pastetoggle=<F2>
 
 syntax on
 
@@ -77,6 +78,6 @@ let g:ctrlp_prompt_mappings = {
 let g:NERDTreeMapOpenInTab='<ENTER>'
 let g:NERDTreeQuitOnOpen = 1
 
-map <C-n> :NERDTreeToggle<CR>
-nmap <C-m> :TagbarToggle<CR>
+map <F3> :NERDTreeToggle<CR>
+nmap <F4> :TagbarToggle<CR>
 
