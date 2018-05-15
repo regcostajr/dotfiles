@@ -14,7 +14,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'Nopik/vim-nerdtree-direnter'
-
+Plugin 'tpope/vim-commentary'
 Plugin 'tomlion/vim-solidity'
 
 " All of your Plugins must be added before the following line
