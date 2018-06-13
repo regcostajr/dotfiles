@@ -8,14 +8,17 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
+" helpers
 Plugin 'kien/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'tomasiser/vim-code-dark'
-Plugin 'Nopik/vim-nerdtree-direnter'
 Plugin 'tpope/vim-commentary'
+Plugin 'vim-airline/vim-airline'
+Plugin 'SirVer/ultisnips'
+
+" language
 Plugin 'tomlion/vim-solidity'
+
+" color scheme
+Plugin 'tomasiser/vim-code-dark'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -46,14 +49,14 @@ set t_Co=256
 set virtualedit=block
 set colorcolumn=80
 set number
-set viminfo='100,<100,s20,h
+set viminfo='100,<1000,s20,h
 set history=1000
 set undolevels=1000
 set nobackup
 set noswapfile
 set nowrap
 set noerrorbells
-set pastetoggle=<F2>
+set pastetoggle=<C-v>
 
 syntax on
 
@@ -61,6 +64,9 @@ colo codedark
 
 " :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+" filetype
+au Bufnewfile,bufRead *.pm,*.t,*.pl set filetype=perl
 
 map <Leader>t :CtrlPBuffer<CR>
  let g:ctrlp_map = '<C-p>'
@@ -75,9 +81,9 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
 
-let g:NERDTreeMapOpenInTab='<ENTER>'
-let g:NERDTreeQuitOnOpen = 1
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
+let g:UltiSnipsExpandTrigger="<tab>"
 
-map <F3> :NERDTreeToggle<CR>
-nmap <F4> :TagbarToggle<CR>
-
+map <C-a> <esc>ggVG<CR>
+map <C-e> <esc>:UltiSnipsEdit<CR>
+map <C-c> :set number!<CR>

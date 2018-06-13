@@ -48,67 +48,19 @@ ggrep() {
     done
 }
 
-# delete branches other than master
-deletebranches() {
-    git checkout master
-    for i in $(git branch | sed -e s/\\*//g); do
-        if [[ $i != "master" ]]; then
-            git branch -D $i;
-        fi
-    done
-}
-
-# list branches of all repo in parent directory
-listbranches() {
-    find . -type d -name .git | while read line; do
-        (
-        cd $line
-        cd ..
-        cwd=$(pwd)
-        echo "$(tput setaf 2)$cwd$(tput sgr0)"
-        git branch
-        )
-    done
-}
-
-# list current active branch in all repos in parent directory
-listactivebranches() {
-    find . -type d -name .git | while read line; do
-        (
-        cd $line
-        cd ..
-        cwd=$(pwd)
-        echo "$(tput setaf 2)$cwd$(tput sgr0)"
-        git rev-parse --abbrev-ref HEAD
-        )
-    done
-}
-
-# update branch with latest changes from remote branch
-# pass remote name or it will default to upstream
-branchupdate() {
-    upstream=${1:-upstream}
-    branch=${2:-master}
-    git fetch $upstream
-    git fetch -p && git rebase -p @{u}
-    git merge $upstream/$branch
-    git push origin HEAD
-}
-
-# only merge upstream, don't push changes to branch
-mergeupstreammaster() {
-    upstream=${1:-upstream}
-    branch=${2:-master}
-    git fetch $upstream
-    git merge $upstream/$branch
-}
-
-# addgitremote <remotename> <githubusername/forkname>
-addgitremote() {
+addremote() {
     REMOTES=`git remote -v`
     REMOTES=($REMOTES)
 
     UPSTREAM=$(echo "${REMOTES[1]}" | sed -E "s/:(\w+)\//:${2}\//")
 
     git remote add $1 ${UPSTREAM}
+}
+
+mvnapp(){
+    mvn -B archetype:generate \
+        -DarchetypeGroupId=org.apache.maven.archetypes \
+        -DarchetypeVersion=1.3 \
+        -DgroupId=com.$1 \
+        -DartifactId=$2
 }
