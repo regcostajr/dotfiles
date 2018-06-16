@@ -42,34 +42,6 @@ sudo npm i -g truffle
 sudo npm i -g solc
 
 # building vim from source
-sudo rm -Rf ~/vim
-git clone https://github.com/vim/vim.git ~/vim
-cd ~/vim
-./configure --with-features=huge \
-    --enable-multibyte \
-    --enable-rubyinterp=yes \
-    --enable-pythoninterp=yes \
-    --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
-    --enable-python3interp=yes \
-    --with-python3-config-dir=/usr/lib/python3.5/config-x86_64-linux-gnu \
-    --enable-perlinterp=yes \
-    --enable-luainterp=yes \
-    --enable-cscope \
-    --prefix=/usr/local
-
-sudo make install
-make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
-sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
-sudo update-alternatives --set editor /usr/local/bin/vim
-sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
-sudo update-alternatives --set vi /usr/local/bin/vim
-
-hash -r
-
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && wget -O ~/.vimrc https://raw.githubusercontent.com/regcostajr/dotfiles/master/.vimrc && wget -O ~/.bash_profile https://raw.githubusercontent.com/regcostajr/dotfiles/master/.bash_profile && curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-
-vim +PluginInstall +qall
-
 sudo mkdir /var/lib/google-auth
 sudo chmod 755 /var/lib/google-auth
 

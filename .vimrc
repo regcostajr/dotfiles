@@ -13,6 +13,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-airline/vim-airline'
 Plugin 'SirVer/ultisnips'
+Plugin 'godlygeek/tabular'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-surround'
 
 " language
 Plugin 'tomlion/vim-solidity'
@@ -27,6 +31,7 @@ filetype plugin indent on    " required
 set autoindent
 set copyindent
 set backspace=indent,eol,start
+set spell spelllang=en_us
 set cmdheight=2
 set cursorline
 set expandtab
@@ -35,8 +40,6 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-set list
-set listchars=tab:>-,trail:-
 set mouse=c
 set ruler
 set scrolloff=5
@@ -56,7 +59,7 @@ set nobackup
 set noswapfile
 set nowrap
 set noerrorbells
-set pastetoggle=<C-v>
+set pastetoggle=<F2>
 
 syntax on
 
@@ -65,25 +68,30 @@ colo codedark
 " :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" filetype
+" file type
 au Bufnewfile,bufRead *.pm,*.t,*.pl set filetype=perl
+autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.template
 
-map <Leader>t :CtrlPBuffer<CR>
- let g:ctrlp_map = '<C-p>'
- let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
- let g:ctrlp_use_caching = 1
- let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v\c\.(git|svn)$|cgi/t/sandbox|cover_db',
-    \ 'file': '\v\c\.(swf|bak|png|gif|js|mov|ico|jpg|pdf|jrxml)$'
-    \ }
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_use_caching = 1
+let g:ctrlp_custom_ignore = { 'dir':  '\v\c\.(git|svn)$|cgi/t/sandbox|cover_db', 'file': '\v\c\.(swf|bak|png|gif|js|mov|ico|jpg|pdf|jrxml)$' }
 
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger = "<tab>"
 
 map <C-a> <esc>ggVG<CR>
 map <C-e> <esc>:UltiSnipsEdit<CR>
-map <C-c> :set number!<CR>
+map <c-w> <esc>ysiw
+map <F5> :set number!<CR>
+noremap <silent> <C-t>= :Tabularize /=<CR>
+noremap <silent> <C-t>> :Tabularize /=><CR>
+noremap <silent> <C-t>: :Tabularize /:\zs<CR>
+noremap <silent> <C-t>, :Tabularize /,<CR>
+noremap <silent> <C-t>{ :Tabularize /{<CR>
+noremap <silent> <C-t>" :Tabularize /"<CR>
+noremap <silent> <C-t>' :Tabularize /'<CR>
+noremap <silent> <C-t>[ :Tabularize /[<CR>
+noremap <silent> <C-t>/ :Tabularize ///<CR>
+noremap <silent> <C-t>\| :Tabularize /\|<CR>
+
