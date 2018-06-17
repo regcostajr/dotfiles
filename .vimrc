@@ -76,6 +76,7 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_use_caching = 1
 let g:ctrlp_custom_ignore = { 'dir':  '\v\c\.(git|svn)$|cgi/t/sandbox|cover_db', 'file': '\v\c\.(swf|bak|png|gif|js|mov|ico|jpg|pdf|jrxml)$' }
+let g:ctrlp_prompt_mappings = { 'AcceptSelection("e")': ['<c-t>'], 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'] }
 
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
 let g:UltiSnipsExpandTrigger = "<tab>"

@@ -9,7 +9,7 @@ git clone https://github.com/vim/vim.git ~/vim
 # next steps must be inside vim dir
 cd ~/vim
 
-# get config dir for python 2 and 3
+# get config path for python 2 and 3
 PYTHONARRAY=($(ls -d -1 /usr/lib/python*/config* | grep -v "\.py" | grep "2.7\|3.2\|3.5"))
 
 # building with python support
@@ -31,3 +31,4 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 wget -O ~/.vimrc https://raw.githubusercontent.com/regcostajr/dotfiles/master/.vimrc
 
 vim +PluginInstall +qall
+
