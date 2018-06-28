@@ -1,0 +1,56 @@
+package Package::TODO;
+
+use strict;
+use warnings;
+no indirect;
+
+our $VERSION = '0.001';
+
+use Moo;
+
+has model => ( is => 'rw', lazy => 1);
+
+sub _build_model {
+    # TODO
+}
+
+=head2 BUILD
+
+# TODO
+
+=cut
+
+sub BUILD {
+    # TODO
+}
+
+=pod
+
+=head1 NAME
+
+# TODO
+
+=head1 SYNOPSIS
+
+# TODO
+
+=head1 DESCRIPTION
+
+# TODO
+
+=head1 AUTHOR
+
+# TODO
+
+=head1 COPYRIGHT
+
+# TODO
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
+1;
