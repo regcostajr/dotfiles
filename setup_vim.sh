@@ -5,7 +5,7 @@ sudo apt-get remove --purge vim vim-runtime gvim
 sudo rm -Rf ~/vim /usr/local/share/vim /usr/bin/vim
 
 # vim preferences
-mkdir -p ./vim
+mkdir -p ~/.vim
 cp -Rf .vim/snips ~/.vim/snips
 cp -Rf .vim/templates ~/.vim/templates
 cp .vimrc ~/.vimrc
