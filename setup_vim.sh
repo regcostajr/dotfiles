@@ -4,6 +4,12 @@
 sudo apt-get remove --purge vim vim-runtime gvim
 sudo rm -Rf ~/vim /usr/local/share/vim /usr/bin/vim
 
+# vim preferences
+mkdir -p ./vim
+cp -Rf .vim/snips ~/.vim/snips
+cp -Rf .vim/templates ~/.vim/templates
+cp .vimrc ~/.vimrc
+
 git clone https://github.com/vim/vim.git ~/vim
 
 # next steps must be inside vim dir
@@ -26,9 +32,7 @@ sudo ln -s /usr/local/bin/vim /usr/bin/vim
 
 hash -r
 
-# vim preferences
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-wget -O ~/.vimrc https://raw.githubusercontent.com/regcostajr/dotfiles/master/.vimrc
 
 vim +PluginInstall +qall
 
