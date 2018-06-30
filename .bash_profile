@@ -48,7 +48,11 @@ ggrep() {
     done
 }
 
-addremote() {
+# git
+
+# addgitremote regcostajr
+
+addgitremote() {
     REMOTES=`git remote -v`
     REMOTES=($REMOTES)
 
@@ -57,10 +61,21 @@ addremote() {
     git remote add $1 ${UPSTREAM}
 }
 
-mvnapp(){
+# java
+
+# mvnnewapp groupID artifactID
+
+mvnnewapp(){
     mvn -B archetype:generate \
         -DarchetypeGroupId=org.apache.maven.archetypes \
         -DarchetypeVersion=1.3 \
         -DgroupId=com.$1 \
         -DartifactId=$2
 }
+
+# go 
+
+setgopath(){
+    GOPATH=$(pwd)
+}
+

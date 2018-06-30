@@ -94,3 +94,5 @@ command -range=% -nargs=* Debug !perl -d %
 noremap <F6> :Debug<CR>
 command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 noremap <F8> :Tidy<CR>
+command -range=% -nargs=* Critic !perlcritic %
+noremap <F7> :Critic<CR>
