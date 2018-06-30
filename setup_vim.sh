@@ -6,11 +6,11 @@ sudo rm -Rf ~/vim /usr/local/share/vim /usr/bin/vim
 
 # vim preferences
 mkdir -p ~/.vim
-cp -Rf .vim/snips ~/.vim/snips
-cp -Rf .vim/templates ~/.vim/templates
+cp -Rf .vim/snips ~/.vim/
+cp -Rf .vim/templates ~/.vim/
 cp .vimrc ~/.vimrc
 
-git clone https://github.com/vim/vim.git ~/vim
+git clone https://github.com/vim/vim.git ~/vim || (cd ~/vim; git pull)
 
 # next steps must be inside vim dir
 cd ~/vim
@@ -32,7 +32,7 @@ sudo ln -s /usr/local/bin/vim /usr/bin/vim
 
 hash -r
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || echo "Vundle already installed"
 
 vim +PluginInstall +qall
 
