@@ -64,6 +64,9 @@ syntax on
 
 colo codedark
 
+" :help last-position-jump
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " file type
 au Bufnewfile,bufRead *.pm,*.t,*.pl set filetype=perl
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.template
@@ -88,11 +91,15 @@ function! Run()
     endif
 endfunction
 
+function! Critic()
+    write
+    :!perlcritic % && perl -c %
+endfunction
+
 noremap <F3> :set number!<CR>
 noremap <F5> :call Run()<CR>
 command -range=% -nargs=* Debug !perl -d %
 noremap <F6> :Debug<CR>
 command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 noremap <F8> :Tidy<CR>
-command -range=% -nargs=* Critic !perlcritic %
-noremap <F7> :Critic<CR>
+noremap <F7> :call Critic()<CR>
