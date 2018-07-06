@@ -15,9 +15,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'SirVer/ultisnips'
 Plugin 'terryma/vim-multiple-cursors'
 
-" language
-Plugin 'tomlion/vim-solidity'
-
 " color scheme
 Plugin 'tomasiser/vim-code-dark'
 
@@ -69,7 +66,14 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " file type
 au Bufnewfile,bufRead *.pm,*.t,*.pl set filetype=perl
+au Bufnewfile,bufRead *.rb,*.erb set filetype=ruby
+au Bufnewfile,bufRead *.js,*.sol set filetype=javascript
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.template
+
+autocmd Filetype perl setlocal ts=4 sts=4 sw=4
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_use_caching = 1
@@ -96,6 +100,7 @@ function! Critic()
     :!perlcritic % && perl -c %
 endfunction
 
+noremap <C-a> <esc>ggVG<CR>
 noremap <F3> :set number!<CR>
 noremap <F5> :call Run()<CR>
 command -range=% -nargs=* Debug !perl -d %

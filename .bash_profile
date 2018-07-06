@@ -59,6 +59,7 @@ addgitremote() {
     UPSTREAM=$(echo "${REMOTES[1]}" | sed -E "s/:(\w+)\//:${1}\//")
 
     git remote add $1 ${UPSTREAM}
+    git fetch $1
 }
 
 # java
