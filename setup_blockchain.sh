@@ -12,5 +12,3 @@ sudo mkdir /opt/ethereum && wget -qO- $ETHEREUM_URL | sudo tar xvz -C /opt/ether
 echo 'export PATH=$PATH:/opt/bitcoin/bin' | sudo tee -a /etc/profile.d/bitcoin.sh 
 echo 'export PATH=$PATH:/opt/ethereum' | sudo tee -a /etc/profile.d/ethereum.sh 
 
-source /etc/profile.d/bitcoin.sh
-source /etc/profile.d/ethereum.sh

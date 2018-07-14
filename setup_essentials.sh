@@ -5,7 +5,6 @@ sudo apt-get install -y software-properties-common build-essential libperl-dev c
 
 curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git//git/master/contrib/completion/git-prompt.sh
 cp .bash_profile ~/.bash_profile
-source ~/.bash_profile
 
 git config --global user.name regcostajr
 git config --global user.email regcostajr@gmail.com

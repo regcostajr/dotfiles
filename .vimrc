@@ -14,6 +14,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'vim-airline/vim-airline'
 Plugin 'SirVer/ultisnips'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'majutsushi/tagbar'
 
 " color scheme
 Plugin 'tomasiser/vim-code-dark'
@@ -81,7 +82,10 @@ let g:ctrlp_custom_ignore = { 'dir':  '\v\c\.(git|svn)$|cgi/t/sandbox|cover_db',
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("e")': ['<c-t>'], 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'] }
 
 let g:UltiSnipsSnippetsDir = "~/.vim/snips/"
+let g:UltiSnipsSnippetDirectories=["snips"]
 let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 function! Run()
     let extension = expand('%:e')
@@ -108,3 +112,4 @@ noremap <F6> :Debug<CR>
 command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
 noremap <F8> :Tidy<CR>
 noremap <F7> :call Critic()<CR>
+noremap <F10> :TagbarToggle<CR>

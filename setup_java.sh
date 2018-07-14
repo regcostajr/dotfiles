@@ -8,4 +8,3 @@ echo 'export PATH=$PATH:/opt/jdk1.8.0_172/bin' | sudo tee -a /etc/profile.d/java
 echo 'export M2_HOME=/opt/apache-maven-3.5.3/' | sudo tee -a /etc/profile.d/java.sh
 echo 'export PATH=$PATH:/opt/apache-maven-3.5.3/bin'| sudo tee -a /etc/profile.d/java.sh
 
-source /etc/profile.d/java.sh
