@@ -64,14 +64,15 @@ addgitremote() {
 
 # java
 
-# mvnnewapp groupID artifactID
+# mvnnew spring options
 
-mvnnewapp(){
-    mvn -B archetype:generate \
-        -DarchetypeGroupId=org.apache.maven.archetypes \
+mvnnew(){
+    mvn archetype:generate \
         -DarchetypeVersion=1.3 \
-        -DgroupId=com.$1 \
-        -DartifactId=$2
+        -DgroupId=$1 \
+        -DartifactId=$2 \
+        -Dversion=0.0.1 \
+        -Dfilter=org.spring:spring
 }
 
 # go 
