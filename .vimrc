@@ -17,7 +17,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
 Plugin 'yggdroot/indentline'
 Plugin 'jiangmiao/auto-pairs'
-
+Plugin 'matze/vim-move'
+Plugin 'FooSoft/vim-argwrap'
 " color scheme
 Plugin 'tomasiser/vim-code-dark'
 
@@ -79,14 +80,22 @@ autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_use_caching = 1
-let g:ctrlp_custom_ignore = { 'dir':  '\v\c\.(git|svn)$|cgi/t/sandbox|cover_db', 'file': '\v\c\.(swf|bak|png|gif|js|mov|ico|jpg|pdf|jrxml)$' }
-let g:ctrlp_prompt_mappings = { 'AcceptSelection("e")': ['<c-t>'], 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'] }
+let g:ctrlp_custom_ignore = {
+    'dir': '\v\c\.(git|svn)$|cgi/t/sandbox|cover_db',
+    'file': '\v\c\.(swf|bak|png|gif|js|mov|ico|jpg|pdf|jrxml)$'
+}
+let g:ctrlp_prompt_mappings = {
+    'AcceptSelection("e")': ['<c-t>'],
+    'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>']
+}
 
 let g:UltiSnipsSnippetsDir = "~/.vim/snips/"
 let g:UltiSnipsSnippetDirectories=["snips"]
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+let g:move_key_modifier = 'C'
 
 function! Run()
     let extension = expand('%:e')
@@ -105,6 +114,7 @@ function! Critic()
     :!perlcritic % && perl -c %
 endfunction
 
+nnoremap <silent> <tab> :ArgWrap<CR>
 noremap <C-a> <esc>ggVG<CR>
 noremap <F3> :set number!<CR>
 noremap <F5> :call Run()<CR>
