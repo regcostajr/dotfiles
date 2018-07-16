@@ -15,7 +15,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'SirVer/ultisnips'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
-Plugin 'ervandew/supertab'
+Plugin 'yggdroot/indentline'
+Plugin 'jiangmiao/auto-pairs'
 
 " color scheme
 Plugin 'tomasiser/vim-code-dark'
@@ -62,7 +63,6 @@ set wildmenu
 syntax on
 
 colo codedark
-
 " :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
@@ -87,9 +87,6 @@ let g:UltiSnipsSnippetDirectories=["snips"]
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
-let g:SuperTabDefaultCompletionType = 'context'
 
 function! Run()
     let extension = expand('%:e')
