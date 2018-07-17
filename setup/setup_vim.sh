@@ -8,6 +8,8 @@ sudo rm -Rf ~/vim /usr/local/share/vim /usr/bin/vim
 mkdir -p ~/.vim
 cp -Rf .vim/snips ~/.vim/
 cp -Rf .vim/templates ~/.vim/
+cp -Rf .perltidyrc ~/.vim/
+cp -Rf .perlcriticrc ~/.vim/
 cp .vimrc ~/.vimrc
 
 git clone https://github.com/vim/vim.git ~/vim || (cd ~/vim; git pull)

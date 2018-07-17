@@ -8,6 +8,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+" highlight
+
 " helpers
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
@@ -17,8 +19,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
 Plugin 'yggdroot/indentline'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'matze/vim-move'
 Plugin 'FooSoft/vim-argwrap'
+
 " color scheme
 Plugin 'tomasiser/vim-code-dark'
 
@@ -64,6 +66,16 @@ set wildmenu
 syntax on
 
 colo codedark
+
+" highlight spell
+hi SpellBad cterm=underline,bold ctermbg=none ctermfg=none
+hi ColorColumn ctermbg=8
+
+let &t_SI = "\<Esc>[4 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[4 q"
+hi Cursor cterm=underline ctermbg=none ctermfg=none
+
 " :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
@@ -73,21 +85,19 @@ au Bufnewfile,bufRead *.rb,*.erb set filetype=ruby
 au Bufnewfile,bufRead *.js,*.sol set filetype=javascript
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.template
 
-autocmd Filetype perl setlocal ts=4 sts=4 sw=4
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_use_caching = 1
 let g:ctrlp_custom_ignore = {
-    'dir': '\v\c\.(git|svn)$|cgi/t/sandbox|cover_db',
-    'file': '\v\c\.(swf|bak|png|gif|js|mov|ico|jpg|pdf|jrxml)$'
-}
+    \'dir': '\v\c\.(git|svn)$|cgi/t/sandbox|cover_db',
+    \'file': '\v\c\.(swf|bak|png|gif|js|mov|ico|jpg|pdf|jrxml)$'
+\}
 let g:ctrlp_prompt_mappings = {
-    'AcceptSelection("e")': ['<c-t>'],
-    'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>']
-}
+    \'AcceptSelection("e")': ['<c-t>'],
+    \'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>']
+\}
 
 let g:UltiSnipsSnippetsDir = "~/.vim/snips/"
 let g:UltiSnipsSnippetDirectories=["snips"]
@@ -96,6 +106,9 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:move_key_modifier = 'C'
+
+let g:perltidy_path = "/home/" . $USER . "/.vim/.perltidyrc"
+let g:perlcritic_path = "/home/" . $USER . "/.vim/.perlcriticrc"
 
 function! Run()
     let extension = expand('%:e')
@@ -109,9 +122,15 @@ function! Run()
     endif
 endfunction
 
+function! Tidy()
+    write
+    silent execute ':!perltidy -pro=' . g:perltidy_path . ' --backup-and-modify-in-place -bext=tidyup %'
+endfunction
+
 function! Critic()
     write
-    :!perlcritic % && perl -c %
+    call Tidy()
+    execute ':!perlcritic -p=' . g:perlcritic_path . '  % && perl -c %'
 endfunction
 
 nnoremap <silent> <tab> :ArgWrap<CR>
@@ -120,7 +139,6 @@ noremap <F3> :set number!<CR>
 noremap <F5> :call Run()<CR>
 command -range=% -nargs=* Debug !perl -d %
 noremap <F6> :Debug<CR>
-command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
-noremap <F8> :Tidy<CR>
 noremap <F7> :call Critic()<CR>
+noremap <F8> :call Tidy()<CR>
 noremap <F10> :TagbarToggle<CR>
