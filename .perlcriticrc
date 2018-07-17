@@ -13,9 +13,6 @@ short_subroutine_statements=3
 [TestingAndDebugging::ProhibitNoStrict]
 allow=refs
 
-[CodeLayout::RequireTidyCode]
-perltidyrc=/home/git/regentmarkets/cpan/rc/.perltidyrc
-
 [ErrorHandling::RequireCheckingReturnValueOfEval]
 severity=4
 
