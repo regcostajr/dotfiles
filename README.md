@@ -1,5 +1,5 @@
 # dotfiles
-bash, tmux, vim and other configuration files
+bash, vim and other configuration files
 
 ---
 
