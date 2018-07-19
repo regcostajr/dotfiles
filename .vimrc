@@ -75,6 +75,7 @@ let &t_SI = "\<Esc>[4 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[4 q"
 hi Cursor cterm=underline ctermbg=none ctermfg=none
+hi TabLineSel cterm=bold ctermfg=black ctermbg=white
 
 " :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
