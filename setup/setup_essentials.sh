@@ -22,7 +22,7 @@ sudo apt-get install -y \
     cmake
 
 curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git//git/master/contrib/completion/git-prompt.sh
-cp .bash_profile ~/.bash_profile
+cat .bash_profile >> ~/.bash_profile
 
 git config --global user.name regcostajr
 git config --global user.email regcostajr@gmail.com
