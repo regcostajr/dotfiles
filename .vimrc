@@ -65,7 +65,7 @@ set wildmenu
 
 syntax on
 
-colo codedark
+silent! colo codedark
 
 " highlight spell
 hi SpellBad cterm=underline,bold ctermbg=none ctermfg=none
