@@ -67,13 +67,13 @@ syntax on
 
 silent! colo codedark
 
-" highlight spell
-hi SpellBad cterm=underline,bold ctermbg=none ctermfg=none
-hi ColorColumn ctermbg=8
-
+" cursor
 let &t_SI = "\<Esc>[4 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[4 q"
+
+" highlight spell
+hi SpellBad cterm=underline,bold ctermbg=none ctermfg=none
 hi Cursor cterm=underline ctermbg=none ctermfg=none
 hi TabLineSel cterm=bold ctermfg=black ctermbg=white
 
@@ -108,9 +108,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:move_key_modifier = 'C'
 
-let g:perltidy_path = "/home/" . $USER . "/.vim/.perltidyrc"
-let g:perlcritic_path = "/home/" . $USER . "/.vim/.perlcriticrc"
-
 function! Run()
     let extension = expand('%:e')
     write
@@ -123,23 +120,24 @@ function! Run()
     endif
 endfunction
 
-function! Tidy()
-    write
-    silent execute ':!perltidy -pro=' . g:perltidy_path . ' --backup-and-modify-in-place -bext=tidyup %'
-endfunction
-
 function! Critic()
     write
-    call Tidy()
-    execute ':!perlcritic -p=' . g:perlcritic_path . '  % && perl -c %'
+    :!perlcritic % && perl -c %
 endfunction
 
-nnoremap <silent> <tab> :ArgWrap<CR>
+function! ToggleCopy()
+    write
+    set number!
+    :IndentLinesToggle
+endfunction
+
+nnoremap <silent> <C-@> :ArgWrap<CR>
 noremap <C-a> <esc>ggVG<CR>
-noremap <F3> :set number!<CR>
+noremap <F3> :call ToggleCopy()<CR>
 noremap <F5> :call Run()<CR>
 command -range=% -nargs=* Debug !perl -d %
 noremap <F6> :Debug<CR>
+command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q
+noremap <F8> :Tidy<CR>
 noremap <F7> :call Critic()<CR>
-noremap <F8> :call Tidy()<CR>
 noremap <F10> :TagbarToggle<CR>
