@@ -66,6 +66,7 @@ set path+=**
 set wildmenu
 set background=dark
 set splitright
+set splitbelow
 syntax on
 
 silent! colo codedark
@@ -136,14 +137,21 @@ function! ToggleCopy()
     :IndentLinesToggle
 endfunction
 
+function! SplitTerminal()
+    ":vert term
+    :term
+    :res 10
+endfunction
+
 nnoremap <silent> <C-@> :ArgWrap<CR>
 noremap <C-a> <esc>ggVG<CR>
 noremap <F3> :call ToggleCopy()<CR>
 noremap <F5> :call Run()<CR>
 command -range=% -nargs=* Debug !perl -d %
 noremap <F6> :Debug<CR>
-command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -l=150 -i=4 -ci=4 -st -se -nbbc -ce -sot -sct -nolq -isbc -bar -nsbl -lp -vtc=1 -pt=2 -sbt=2 -bt=2 -bbt=2 -nsfs -vt=1 -q
-noremap <F8> :Tidy<CR>
+command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -l=150 -i=4 -ci=4 -st -se -nbbc -ce -sot -sct -nolq -isbc -bar -nsbl -lp -vtc=1 -pt=2 -sbt=2 -bt=2 -bbt=2 -nsfs -vt=1 %
 noremap <F7> :call Critic()<CR>
-noremap <F10> :TagbarToggle<CR>
+noremap <F8> :Tidy<CR>
 noremap <F9> :NERDTreeToggle<CR>
+noremap <F10> :TagbarToggle<CR>
+noremap <F12> :call SplitTerminal()<CR>
