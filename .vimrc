@@ -20,6 +20,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'yggdroot/indentline'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'sheerun/vim-polyglot'
 
 " color scheme
 Plugin 'tomasiser/vim-code-dark'
@@ -66,6 +68,7 @@ set background=dark
 set splitright
 set splitbelow
 set tags=./tags;
+set magic
 
 syntax on
 
@@ -86,7 +89,6 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 " file type
 au Bufnewfile,bufRead *.pm,*.t,*.pl set filetype=perl
 au Bufnewfile,bufRead *.rb,*.erb set filetype=ruby
-au Bufnewfile,bufRead *.js,*.sol set filetype=javascript
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.template
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
@@ -116,7 +118,6 @@ let g:NERDTreeQuitOnOpen = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 
-
 function! Run()
     let extension = expand('%:e')
     write
@@ -127,6 +128,11 @@ function! Run()
             :term perl %
         endif
     endif
+endfunction
+
+function! Debug()
+    write
+    :term perl -d %
 endfunction
 
 function! Critic()
@@ -150,12 +156,21 @@ function! Tidy()
     :%!perltidy -l=150 -st -ce -sct -sot -i=4 -pt=2 -sbt=2 -bbt=0 -nsfs -nolq -asc -wba=";" -cab=0 -nbbc -nolq -syn -isbc -ci=4  
 endfunction
 
-nnoremap <silent> <C-@> :ArgWrap<CR>
+function! FindTag()
+    let co = expand('<cword>')
+    if matchstr(expand('<cWORD>'), '[$@%]'.co)  == ''
+        :exec("tag ".co)
+    else
+        normal! gD
+    endif
+endfunction
+
 noremap <C-a> <esc>ggVG<CR>
+noremap <C-l> <esc>viw
+noremap <C-]> :call FindTag()<CR>
 noremap <F3> :call ToggleCopy()<CR>
 noremap <F5> :call Run()<CR>
-command -range=% -nargs=* Debug !perl -d %
-noremap <F6> :Debug<CR>
+noremap <F6> :call Debug()<CR>
 noremap <F7> :call Critic()<CR>
 noremap <F8> :call Tidy()<CR>
 noremap <F9> :NERDTreeToggle<CR>
