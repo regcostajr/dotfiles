@@ -19,9 +19,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
 Plugin 'yggdroot/indentline'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'FooSoft/vim-argwrap'
 Plugin 'scrooloose/nerdtree'
-Plugin 'cfsalguero/perl-go-to-def'
 
 " color scheme
 Plugin 'tomasiser/vim-code-dark'
@@ -52,14 +50,14 @@ set showmatch
 set smarttab
 set t_Co=256
 set virtualedit=block
-set colorcolumn=150
+set colorcolumn=80
 set number
 set viminfo='100,<1000,s20,h
 set history=1000
 set undolevels=1000
 set nobackup
 set noswapfile
-set nowrap
+set wrap
 set noerrorbells
 set pastetoggle=<F2>
 set path+=**
@@ -67,6 +65,8 @@ set wildmenu
 set background=dark
 set splitright
 set splitbelow
+set tags=./tags;
+
 syntax on
 
 silent! colo codedark
@@ -79,7 +79,6 @@ let &t_EI = "\<Esc>[4 q"
 " highlight spell
 hi SpellBad cterm=underline,bold ctermbg=none ctermfg=none
 hi Cursor cterm=underline ctermbg=none ctermfg=none
-hi TabLineSel cterm=bold ctermfg=black ctermbg=white
 
 " :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -114,21 +113,25 @@ let g:move_key_modifier = 'C'
 
 let g:NERDTreeQuitOnOpen = 1
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+
+
 function! Run()
     let extension = expand('%:e')
     write
     if (&ft=="perl")
         if(extension=='t')
-            :!prove -v %
+            :term prove -v %
         else
-            :!perl %
+            :term perl %
         endif
     endif
 endfunction
 
 function! Critic()
     write
-    :!perlcritic % && perl -c %
+    :term perlcritic % && perl -c %
 endfunction
 
 function! ToggleCopy()
@@ -143,15 +146,18 @@ function! SplitTerminal()
     :res 10
 endfunction
 
+function! Tidy()
+    :%!perltidy -l=150 -st -ce -sct -sot -i=4 -pt=2 -sbt=2 -bbt=0 -nsfs -nolq -asc -wba=";" -cab=0 -nbbc -nolq -syn -isbc -ci=4  
+endfunction
+
 nnoremap <silent> <C-@> :ArgWrap<CR>
 noremap <C-a> <esc>ggVG<CR>
 noremap <F3> :call ToggleCopy()<CR>
 noremap <F5> :call Run()<CR>
 command -range=% -nargs=* Debug !perl -d %
 noremap <F6> :Debug<CR>
-command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -l=150 -i=4 -ci=4 -st -se -nbbc -ce -sot -sct -nolq -isbc -bar -nsbl -lp -vtc=1 -pt=2 -sbt=2 -bt=2 -bbt=2 -nsfs -vt=1 %
 noremap <F7> :call Critic()<CR>
-noremap <F8> :Tidy<CR>
+noremap <F8> :call Tidy()<CR>
 noremap <F9> :NERDTreeToggle<CR>
 noremap <F10> :TagbarToggle<CR>
 noremap <F12> :call SplitTerminal()<CR>
