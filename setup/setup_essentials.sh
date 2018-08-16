@@ -22,7 +22,10 @@ packagelist=(
     jq 
     cmake
 )
-sudo apt-get install -y ${packagelist[@]} 
+
+for i in ${packagelist[@]}; do
+  sudo apt-get install -y $i
+done
 
 curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git//git/master/contrib/completion/git-prompt.sh
 cat .bash_profile >> ~/.bash_profile
