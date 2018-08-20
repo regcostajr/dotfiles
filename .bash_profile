@@ -1,7 +1,3 @@
-#
-# PERSONAL $HOME/.bash_profile
-# By Raunak Kathuria
-#
 source ~/.git-prompt.sh
 
 export PS1='$? \[\033[01;32m\][$(date +%H:%M)]\[\033[00m\] \[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\[\033[01;35m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
@@ -28,14 +24,5 @@ addgitremote() {
 
     git remote add ${remotename} ${UPSTREAM}
     git fetch ${remotename}
-}
-
-mvnnew(){
-    mvn archetype:generate \
-        -DarchetypeVersion=1.3 \
-        -DgroupId=$1 \
-        -DartifactId=$2 \
-        -Dversion=0.0.1 \
-        -Dfilter=org.spring:spring
 }
 

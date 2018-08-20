@@ -115,9 +115,6 @@ let g:move_key_modifier = 'C'
 
 let g:NERDTreeQuitOnOpen = 1
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-
 function! Run()
     let extension = expand('%:e')
     write
@@ -157,6 +154,7 @@ function! Tidy()
 endfunction
 
 function! FindTag()
+    write
     let co = expand('<cword>')
     if matchstr(expand('<cWORD>'), '[$@%]'.co)  == ''
         :exec("tag ".co)
