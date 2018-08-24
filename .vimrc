@@ -85,10 +85,6 @@ hi Cursor cterm=underline ctermbg=none ctermfg=none
 
 " :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-" perl check syntax
-autocmd BufWritePost *.pm,*.t,*.pl echom system("perl -Ilib -c " . '"' . expand("%:p"). '"' )
-" remove white spaces
-autocmd BufWritePre * %s/\s\+$//e
 
 " file type
 au Bufnewfile,bufRead *.pm,*.t,*.pl set filetype=perl
@@ -146,20 +142,24 @@ function! SplitTerminal()
     :res 10
 endfunction
 
+function! Critic()
+    write
+    :!perlcritic % && perl -c %
+endfunction
+
 function! Tidy()
     :%!perltidy -l=150 -st -ce -sct -sot -i=4 -pt=2 -sbt=2 -bbt=0 -nsfs -nolq -asc -wba=";" -cab=0 -nbbc -nolq -syn -isbc -ci=4
 endfunction
 
 function! FindTag()
-    write
     let co = matchstr(expand('<cword>'), '[a-zA-Z0-9._^\\]*$')
-    if matchstr(expand('<cWORD>'), '[$@%]'.co)  == '' 
+    if matchstr(expand('<cWORD>'), '[$@%]'.co)  == ''
         let tag_string = split(execute("tselect ".co), "\n")[1]
         let tag_file_name = matchstr(tag_string, '[a-zA-Z0-9._^\\]*$')
         if tag_file_name == expand('%:t')
             :exec("tag ".co)
         else
-            :exec("tab tag ".co)  
+            :exec("tab tag ".co)
         endif
     else
         normal! gD
@@ -172,6 +172,7 @@ noremap <C-]> :call FindTag()<CR>
 noremap <F3> :call ToggleCopy()<CR>
 noremap <F5> :call Run()<CR>
 noremap <F6> :call Debug()<CR>
+noremap <F7> :call Critic()<CR>
 noremap <F8> :call Tidy()<CR>
 noremap <F9> :NERDTreeToggle<CR>
 noremap <F10> :TagbarToggle<CR>
