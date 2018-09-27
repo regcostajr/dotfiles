@@ -166,6 +166,7 @@ function! FindTag()
     endif
 endfunction
 
+nmap s <Plug>(easymotion-s)
 noremap <C-a> <esc>ggVG<CR>
 noremap <C-l> <esc>viw
 noremap <C-]> :call FindTag()<CR>
