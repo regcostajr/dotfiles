@@ -27,7 +27,7 @@ for i in ${packagelist[@]}; do
   sudo apt-get install -y $i
 done
 
-curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git//git/master/contrib/completion/git-prompt.sh
+curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 cat .bash_profile >> ~/.bash_profile
 
 git config --global user.name regcostajr

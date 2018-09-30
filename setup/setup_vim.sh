@@ -19,7 +19,7 @@ cd ~/vim
 PYTHONARRAY=($(ls -d -1 /usr/lib/python*/config* | grep -v "\.py" | grep "2.7\|3.2\|3.5"))
 
 # building with python support
-./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes --enable-pythoninterp=yes --with-python-config-dir=${PYTHONARRAY[0]} --enable-python3interp=yes --with-python3-config-dir=$PYTHONARRAY[1] --enable-perlinterp=yes --enable-luainterp=yes --enable-cscope --prefix=/usr/local
+./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes --enable-pythoninterp=yes --with-python-config-dir=${PYTHONARRAY[0]} --enable-python3interp=yes --with-python3-config-dir=${PYTHONARRAY[1]} --enable-perlinterp=yes --enable-luainterp=yes --enable-cscope --prefix=/usr/local
 
 sudo make install
 make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
