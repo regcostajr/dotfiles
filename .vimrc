@@ -69,6 +69,9 @@ set splitright
 set splitbelow
 set tags=./tags;
 set magic
+set undodir=~/.vim/undo//
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
 
 syntax on
 
@@ -85,6 +88,7 @@ hi Cursor cterm=underline ctermbg=none ctermfg=none
 
 " :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+autocmd BufWritePre * %s/\s\+$//e
 
 " file type
 au Bufnewfile,bufRead *.pm,*.t,*.pl set filetype=perl
@@ -113,6 +117,9 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:move_key_modifier = 'C'
 
 let g:NERDTreeQuitOnOpen = 1
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 function! Run()
     let extension = expand('%:e')
@@ -167,6 +174,8 @@ function! FindTag()
 endfunction
 
 nmap s <Plug>(easymotion-s)
+nmap <Tab> :tabn<CR>
+nmap <S-Tab> :tabp<CR>
 noremap <C-a> <esc>ggVG<CR>
 noremap <C-l> <esc>viw
 noremap <C-]> :call FindTag()<CR>
