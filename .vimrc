@@ -22,6 +22,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'chrisbra/csv.vim'
 
 " color scheme
 Plugin 'tomasiser/vim-code-dark'
@@ -93,9 +94,15 @@ autocmd BufWritePre * %s/\s\+$//e
 " file type
 au Bufnewfile,bufRead *.pm,*.t,*.pl set filetype=perl
 au Bufnewfile,bufRead *.rb,*.erb set filetype=ruby
+au BufRead,BufWritePost *.csv :%ArrangeColumn
+au BufWritePre *.csv :%UnArrangeColumn
+
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.template
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+
+let b:csv_arrange_align = 'l*'
+let b:csv_arrange_use_all_rows = 1
 
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_use_caching = 1
