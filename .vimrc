@@ -101,6 +101,8 @@ autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.template
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 
+let mapleader=","
+
 let b:csv_arrange_align = 'l*'
 let b:csv_arrange_use_all_rows = 1
 
@@ -194,3 +196,4 @@ noremap <F8> :call Tidy()<CR>
 noremap <F9> :NERDTreeToggle<CR>
 noremap <F10> :TagbarToggle<CR>
 noremap <F12> :call SplitTerminal()<CR>
+xnoremap <leader>p "_dP
