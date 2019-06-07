@@ -33,6 +33,7 @@ filetype plugin indent on    " required
 
 set autoindent
 set copyindent
+set nomodeline
 set backspace=indent,eol,start
 set spell spelllang=en_us
 set cmdheight=2
@@ -188,6 +189,7 @@ nmap <S-Tab> :tabp<CR>
 noremap <C-a> <esc>ggVG<CR>
 noremap <C-l> <esc>viw
 noremap <C-]> :call FindTag()<CR>
+noremap <C-w> :w !sudo tee %<CR>
 noremap <F3> :call ToggleCopy()<CR>
 noremap <F5> :call Run()<CR>
 noremap <F6> :call Debug()<CR>
