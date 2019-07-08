@@ -15,7 +15,7 @@ function after_install(){
 
 function setup_linux() {
     # removing old vim
-    sudo apt-get remove --purge vim vim-runtime gvim
+    sudo apt-get remove -y --purge vim vim-runtime gvim
     sudo rm -Rf ~/vim /usr/local/share/vim /usr/bin/vim
 
     before_install
