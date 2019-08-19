@@ -189,7 +189,7 @@ nmap <S-Tab> :tabp<CR>
 noremap <C-a> <esc>ggVG<CR>
 noremap <C-l> <esc>viw
 noremap <C-]> :call FindTag()<CR>
-noremap <C-w> :w !sudo tee %<CR>
+noremap <F2> :w !sudo tee %<CR>
 noremap <F3> :call ToggleCopy()<CR>
 noremap <F5> :call Run()<CR>
 noremap <F6> :call Debug()<CR>
