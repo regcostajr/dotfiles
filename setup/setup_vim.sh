@@ -34,10 +34,10 @@ function setup_linux() {
     sudo make install
     make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
 
-    sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
-    sudo update-alternatives --set editor /usr/local/bin/vim
-    sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
-    sudo update-alternatives --set vi /usr/local/bin/vim
+    yes '' | sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
+    yes '' | sudo update-alternatives --set editor /usr/local/bin/vim           
+    yes '' | sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
+    yes '' | sudo update-alternatives --set vi /usr/local/bin/vim
     sudo ln -s /usr/local/bin/vim /usr/bin/vim
 
     hash -r
