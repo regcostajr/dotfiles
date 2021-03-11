@@ -6,6 +6,4 @@ no indirect;
 
 our $VERSION = '0.001';
 
-use Moo;
-
 1;

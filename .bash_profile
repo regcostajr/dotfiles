@@ -1,5 +1,7 @@
 source ~/.git-prompt.sh
 
+# copied from https://github.com/raunakkathuria/dotfiles/blob/master/.bash_profile
+################################################################################
 export PS1='$? \[\033[01;32m\][$(date +%H:%M)]\[\033[00m\] \[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\[\033[01;35m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
 
 ggrep() {
@@ -14,15 +16,18 @@ ggrep() {
 }
 
 addgitremote() {
-    remotename=${1:-regcostajr}
-    forkname=${2:-regcostajr}
-    
     REMOTES=`git remote -v`
     REMOTES=($REMOTES)
 
-    UPSTREAM=$(echo "${REMOTES[1]}" | sed -E "s/:(\w+-?\w+)\//:${forkname}\//")
+    UPSTREAM=$(echo "${REMOTES[1]}" | sed -E "s/:(\w+-?\w+)\//:${2}\//")
 
-    git remote add ${remotename} ${UPSTREAM}
-    git fetch ${remotename}
+    git remote add $1 ${UPSTREAM}
+}
+################################################################################
+
+run_ctags() {
+    ctags --languages=perl,javascript,vim,sql --recurse=yes -f ~/.vim/tags
 }
 
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

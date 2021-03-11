@@ -11,6 +11,7 @@ function before_install(){
 function after_install(){
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || echo "Vundle already installed"
     vim +PluginInstall +qall
+    vim +'CocInstall -sync coc-json coc-snippets coc-perl coc-sql' +qall
 }
 
 function setup_linux() {
@@ -35,7 +36,7 @@ function setup_linux() {
     make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
 
     yes '' | sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
-    yes '' | sudo update-alternatives --set editor /usr/local/bin/vim           
+    yes '' | sudo update-alternatives --set editor /usr/local/bin/vim
     yes '' | sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
     yes '' | sudo update-alternatives --set vi /usr/local/bin/vim
     sudo ln -s /usr/local/bin/vim /usr/bin/vim

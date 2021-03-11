@@ -15,14 +15,13 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-airline/vim-airline'
 Plugin 'SirVer/ultisnips'
-Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mg979/vim-visual-multi'
 Plugin 'majutsushi/tagbar'
-Plugin 'yggdroot/indentline'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'chrisbra/csv.vim'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 " color scheme
 Plugin 'tomasiser/vim-code-dark'
@@ -69,7 +68,7 @@ set wildmenu
 set background=dark
 set splitright
 set splitbelow
-set tags=./tags;
+set tags=~/.vim/tags;
 set magic
 set undodir=~/.vim/undo//
 set backupdir=~/.vim/backup//
@@ -101,8 +100,7 @@ au BufWritePre *.csv :%UnArrangeColumn
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.template
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-
-let mapleader=","
+autocmd FileType perl,ruby,python,go,c,java TagbarOpen
 
 let b:csv_arrange_align = 'l*'
 let b:csv_arrange_use_all_rows = 1
@@ -130,6 +128,8 @@ let g:NERDTreeQuitOnOpen = 1
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+
+let g:EasyMotion_smartcase = 1
 
 function! Run()
     let extension = expand('%:e')
@@ -186,16 +186,24 @@ endfunction
 nmap s <Plug>(easymotion-s)
 nmap <Tab> :tabn<CR>
 nmap <S-Tab> :tabp<CR>
-noremap <C-a> <esc>ggVG<CR>
-noremap <C-l> <esc>viw
-noremap <C-]> :call FindTag()<CR>
-noremap <F2> :w !sudo tee %<CR>
-noremap <F3> :call ToggleCopy()<CR>
-noremap <F5> :call Run()<CR>
-noremap <F6> :call Debug()<CR>
-noremap <F7> :call Critic()<CR>
-noremap <F8> :call Tidy()<CR>
-noremap <F9> :NERDTreeToggle<CR>
-noremap <F10> :TagbarToggle<CR>
-noremap <F12> :call SplitTerminal()<CR>
-xnoremap <leader>p "_dP
+nmap <C-a> <esc>ggVG<CR>
+nmap <C-l> <esc>viw
+nmap <C-]> :call FindTag()<CR>
+nmap <S-w> :w !sudo tee %<CR>
+nmap <F3> :call ToggleCopy()<CR>
+nmap <F5> :call Run()<CR>
+nmap <F6> :call Debug()<CR>
+nmap <F7> :call Critic()<CR>
+nmap <F8> :call Tidy()<CR>
+nmap <F9> :NERDTreeToggle<CR>
+nmap <F12> :call SplitTerminal()<CR>
+" window navigation
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+" replace without copying
+vnoremap p "0p
+vnoremap P "0P
+vnoremap y "0y
+vnoremap d "0d
